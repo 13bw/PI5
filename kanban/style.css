@@ -1,0 +1,368 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Estilo do Kanban */
+.kanban {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    min-height: 400px;
+}
+
+/* Estilo das colunas */
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #ffffff;
+    min-width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Adiciona uma borda sutil */
+}
+
+/* Estilo dos cards */
+.item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+/* Estilo dos cards arrastando */
+.item:active {
+    cursor: grabbing;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao arrastar */
+}
+
+.dragging {
+    opacity: 0.6; /* Ajusta a opacidade durante o arrasto */
+}
+
+.hidden {
+    padding: 0;
+    height: 0;
+}
+/* Separador dos cards */
+.sep {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 8px 0;
+}
+
+/* Corpo do card */
+.body {
+    font-size: 16px;
+    color: #666666;
+    margin-top: 8px;
+    background-color: white;
+    max-width: 300px;
+}
+
+/* Cabeçalho do card */
+.header {
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
+    background-color: white; /* Cor de fundo mais clara */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Cabeçalho da coluna */
+.head {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    background-color: #007bff;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+}
+
+/* Estilo do botão de detalhes */
+.details-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+}
+
+.details-btn:hover {
+    background-color: #218838;
+}
+
+/* Estilo do modal principal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Conteúdo do modal principal */
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 360px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: modal-fade-in 0.3s ease-in-out; /* Adiciona uma animação de fade-in */
+}
+
+/* Título do modal principal */
+.modal-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333333;
+    background-color: #f8f9fa; /* Cor de fundo mais clara */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilo dos inputs do modal principal */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo dos botões do modal principal */
+.modal-content button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-content button[type="button"] {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.modal-content button[type="button"]:hover {
+    background-color: #dddddd;
+}
+
+/* Estilo do modal de detalhes */
+#details-modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Conteúdo do modal de detalhes */
+#details-modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    width: 360px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: modal-fade-in 0.3s ease-in-out; /* Adiciona uma animação de fade-in */
+}
+
+/* Título do modal de detalhes */
+#details-modal-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333333;
+    background-color: #f8f9fa; /* Cor de fundo mais clara */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilo do histórico no modal de detalhes */
+.history {
+    margin-top: 20px;
+    text-align: left;
+    max-height: 300px; /* Limita a altura do histórico */
+    overflow-y: auto; /* Adiciona rolagem quando necessário */
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de cada item do histórico */
+.history-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Estilo do último item do histórico */
+.history-item:last-child {
+    border-bottom: none;
+}
+
+/* Estilo da data/hora no histórico */
+.history-time {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Estilo para um texto mais destacado no histórico */
+.history-highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Botão de fechar do modal de detalhes */
+#details-cancel-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#details-cancel-btn:hover {
+    background-color: #c82333;
+}
+
+/* Animação de fade-in */
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilo dos inputs e textarea do modal */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.modal-content textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botão para adicionar card */
+.add-card-btn {
+    margin-top: auto; /* Alinha o botão ao final da coluna */
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-card-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do botão de excluir */
+.delete-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}

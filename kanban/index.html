@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kanban</title>
+
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="kanban">
+            <div class="column" id="to-do-column">
+                <div class="head" draggable="false">A Fazer</div>
+                <div class="item hidden" style="visibility: hidden"></div>
+                <button class="add-card-btn" data-column-id="to-do-column">
+                    Adicionar Card
+                </button>
+            </div>
+
+            <div class="column" id="in-progress-column">
+                <div class="head" draggable="false">Em Progresso</div>
+                <div class="item hidden" style="visibility: hidden"></div>
+
+                <button
+                    class="add-card-btn"
+                    data-column-id="in-progress-column"
+                >
+                    Adicionar Card
+                </button>
+            </div>
+
+            <div class="column" id="done-column">
+                <div class="head" draggable="false">Concluído</div>
+                <div class="item hidden" style="visibility: hidden"></div>
+                <button class="add-card-btn" data-column-id="done-column">
+                    Adicionar Card
+                </button>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <form id="new-card-form" class="modal-content">
+                <h2>Adicionar Novo Card</h2>
+                <input
+                    type="text"
+                    id="new-card-text"
+                    placeholder="Título do Card"
+                    required
+                />
+                <textarea
+                    id="new-card-description"
+                    placeholder="Descrição do Card"
+                    rows="4"
+                    required
+                ></textarea>
+                <button type="submit">Adicionar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </form>
+        </div>
+        <div id="details-modal" class="modal">
+            <div id="details-modal-content">
+                <h2>Detalhes do Card</h2>
+                <div class="history">
+                    <div class="history-item">
+                        <span class="history-highlight"
+                            >Mudança de Coluna:</span
+                        >
+                        De "To Do" para "In Progress"
+                        <span class="history-time">2024-08-30 14:05</span>
+                    </div>
+                    <div class="history-item">
+                        <span class="history-highlight"
+                            >Adicionado Comentário:</span
+                        >
+                        "Iniciando o desenvolvimento."
+                        <span class="history-time">2024-08-30 13:50</span>
+                    </div>
+                </div>
+                <button id="details-cancel-btn">Fechar</button>
+            </div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+</html>
